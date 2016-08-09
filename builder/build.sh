@@ -21,8 +21,8 @@ socket=/var/run/docker.sock
 file=Dockerfile
 
 echo "Building $package"
-stack setup "$(ghc --numeric-version)" --skip-ghc-check
-stack build --ghc-options "$ghc_options" -- .
+stack setup "$(ghc --numeric-version)" --skip-ghc-check --allow-different-user
+stack build --ghc-options "$ghc_options" --allow-different-user -- .
 
 # Strip all statically linked executables
 find "$(stack path --dist-dir)/build" \
